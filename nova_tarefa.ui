@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>392</height>
+    <height>460</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>383</width>
-    <height>392</height>
+    <height>460</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -37,14 +37,14 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_nome_tarefa">
        <property name="text">
         <string>Nome do Evento:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="lineEdit_nome_tarefa"/>
      </item>
     </layout>
    </widget>
@@ -59,14 +59,14 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_prioridade">
        <property name="text">
         <string>Prioridade do evento:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBox_prioridade">
        <item>
         <property name="text">
          <string>1 - Baixa</string>
@@ -110,14 +110,14 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_data_evento">
        <property name="text">
         <string>Data do evento:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QDateEdit" name="dateEdit"/>
+      <widget class="QDateEdit" name="dateEdit_evento"/>
      </item>
     </layout>
    </widget>
@@ -158,16 +158,29 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
      <item row="0" column="1">
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEdit_observacoes"/>
      </item>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="label_obs">
        <property name="text">
         <string>Observações:</string>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_salvar">
+    <property name="geometry">
+     <rect>
+      <x>124</x>
+      <y>402</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Salvar</string>
+    </property>
    </widget>
   </widget>
  </widget>

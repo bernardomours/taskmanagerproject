@@ -6,94 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>599</width>
-    <height>496</height>
+    <width>699</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MENU</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(201, 253, 255);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QLabel" name="label_pytasks">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>190</y>
-      <width>581</width>
-      <height>281</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>MINHAS TAREFAS</string>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>40</y>
-       <width>581</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout"/>
-    </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>581</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Tarefa</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Prazo</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Prioridade</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Observações</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Status</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>236</x>
-      <y>3</y>
-      <width>121</width>
+      <x>220</x>
+      <y>0</y>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -101,32 +30,186 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
-     <string>PyTasks</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#5555ff;&quot;&gt;PyTasks&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>599</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuTELA_INICIAL">
-    <property name="title">
-     <string>&amp;Tarefas</string>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>320</y>
+      <width>501</width>
+      <height>441</height>
+     </rect>
     </property>
-    <addaction name="actionNova_tarefa"/>
-    <addaction name="actionEditar_tarefa"/>
-    <addaction name="separator"/>
-    <addaction name="actionSair_2"/>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_pendentes">
+     <attribute name="title">
+      <string>Tarefas Pendentes</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_concluidas">
+     <attribute name="title">
+      <string>Tarefas Concluídas</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>511</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <column>
+       <property name="text">
+        <string>Nome do Evento</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Data do Evento</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Prioridade</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Observações</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
    </widget>
-   <addaction name="menuTELA_INICIAL"/>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>630</y>
+      <width>160</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_nova_tarefa">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Adicionar Tarefa</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>mais.png</normaloff>mais.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>13</width>
+         <height>13</height>
+        </size>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_alterar_tarefa">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Alterar Tarefa</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>lapis.png</normaloff>lapis.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>13</width>
+         <height>13</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_excluir_tarefa">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Excluir Tarefa</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>lixo.png</normaloff>lixo.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>13</width>
+         <height>13</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>2</x>
+      <y>342</y>
+      <width>511</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>Nome do Evento</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Data do Evento</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Prioridade</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Observações</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+    </column>
+   </widget>
   </widget>
   <action name="actionEditar_tarefa">
    <property name="icon">
