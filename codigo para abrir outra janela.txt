@@ -1,0 +1,5 @@
+from cadprotudos import Ui_CadProduto
+        self.tela = QtWidgets.QMainWindow()
+        self.cad = Ui_CadProduto()
+        self.cad.setupUi(self.tela)
+        self.tela.show()

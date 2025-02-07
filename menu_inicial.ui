@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TelaMenu</class>
+ <widget class="QMainWindow" name="TelaMenu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>599</width>
+    <height>496</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MENU</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>581</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>MINHAS TAREFAS</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>581</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout"/>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>581</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Tarefa</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Prazo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Prioridade</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Observações</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Status</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>236</x>
+      <y>3</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>PyTasks</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>599</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTELA_INICIAL">
+    <property name="title">
+     <string>&amp;Tarefas</string>
+    </property>
+    <addaction name="actionNova_tarefa"/>
+    <addaction name="actionEditar_tarefa"/>
+    <addaction name="separator"/>
+    <addaction name="actionSair_2"/>
+   </widget>
+   <addaction name="menuTELA_INICIAL"/>
+  </widget>
+  <action name="actionEditar_tarefa">
+   <property name="icon">
+    <iconset>
+     <normaloff>edit_5953096.png</normaloff>edit_5953096.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Editar tarefa</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionSair">
+   <property name="text">
+    <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionSair_2">
+   <property name="text">
+    <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionCTRL_N">
+   <property name="text">
+    <string>CTRL + N</string>
+   </property>
+  </action>
+  <action name="actionNova_tarefa">
+   <property name="icon">
+    <iconset>
+     <normaloff>paper_14910408.png</normaloff>paper_14910408.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Nova tarefa</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
