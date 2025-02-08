@@ -3,7 +3,7 @@
 # Arquivo convertido em ui2py.vercel.app
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from menu_inicial import * #carregar dados de outra janela
+from menu_inicial_antigo import * #carregar dados de outra janela
 from PyQt5.QtWidgets import QMessageBox
 
 
