@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>766</height>
+    <width>941</width>
+    <height>664</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>850</width>
-    <height>766</height>
+    <width>941</width>
+    <height>664</height>
    </size>
   </property>
   <property name="cursor">
@@ -165,7 +165,7 @@ QPushButton{
                <x>0</x>
                <y>0</y>
                <width>182</width>
-               <height>639</height>
+               <height>537</height>
               </rect>
              </property>
              <attribute name="label">
@@ -335,7 +335,7 @@ QPushButton{
                <x>0</x>
                <y>0</y>
                <width>182</width>
-               <height>639</height>
+               <height>537</height>
               </rect>
              </property>
              <attribute name="label">
@@ -514,6 +514,11 @@ QTableWidget{
                   <string>Status</string>
                  </property>
                 </column>
+                <column>
+                 <property name="text">
+                  <string>Palavra-Chave</string>
+                 </property>
+                </column>
                </widget>
               </item>
              </layout>
@@ -547,7 +552,7 @@ QTableWidget{
                  <string notr="true">background-color: rgb(240,240,240);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="tab">
                  <property name="styleSheet">
