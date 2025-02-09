@@ -454,7 +454,7 @@ margin-left: 0</string>
           <item>
            <widget class="QStackedWidget" name="Pages">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_home">
              <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -644,7 +644,7 @@ QTableWidget{
                    </widget>
                   </item>
                   <item row="8" column="1">
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="pushButton_salvar_add">
                     <property name="minimumSize">
                      <size>
                       <width>0</width>

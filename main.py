@@ -9,7 +9,7 @@ class Ui_TelaPrincipal(object):
         TelaPrincipal.setMaximumSize(QtCore.QSize(941, 664))
         TelaPrincipal.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("foto_logo.webp"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("/tmp/UPLOADS/foto_logo.webp"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         TelaPrincipal.setWindowIcon(icon)
         TelaPrincipal.setStyleSheet("background-color: rgb(43, 255, 177);")
         self.centralwidget = QtWidgets.QWidget(TelaPrincipal)
@@ -96,7 +96,7 @@ class Ui_TelaPrincipal(object):
         self.pushButton_home.setFont(font)
         self.pushButton_home.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("casa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("/tmp/UPLOADS/casa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_home.setIcon(icon1)
         self.pushButton_home.setIconSize(QtCore.QSize(12, 12))
         self.pushButton_home.setObjectName("pushButton_home")
@@ -109,7 +109,7 @@ class Ui_TelaPrincipal(object):
         self.pushButton_adicionar_tarefa.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_adicionar_tarefa.setLayoutDirection(QtCore.Qt.LeftToRight)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("mais.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("/tmp/UPLOADS/mais.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_adicionar_tarefa.setIcon(icon2)
         self.pushButton_adicionar_tarefa.setIconSize(QtCore.QSize(12, 12))
         self.pushButton_adicionar_tarefa.setObjectName("pushButton_adicionar_tarefa")
@@ -121,7 +121,7 @@ class Ui_TelaPrincipal(object):
         self.pushButton_editar_tarefa.setFont(font)
         self.pushButton_editar_tarefa.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("lapis.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("/tmp/UPLOADS/lapis.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_editar_tarefa.setIcon(icon3)
         self.pushButton_editar_tarefa.setIconSize(QtCore.QSize(12, 12))
         self.pushButton_editar_tarefa.setObjectName("pushButton_editar_tarefa")
@@ -133,7 +133,7 @@ class Ui_TelaPrincipal(object):
         self.pushButton_excluir_tarefa.setFont(font)
         self.pushButton_excluir_tarefa.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("lixo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("/tmp/UPLOADS/lixo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_excluir_tarefa.setIcon(icon4)
         self.pushButton_excluir_tarefa.setIconSize(QtCore.QSize(12, 12))
         self.pushButton_excluir_tarefa.setObjectName("pushButton_excluir_tarefa")
@@ -278,11 +278,11 @@ class Ui_TelaPrincipal(object):
         self.lineEdit_palavra_chave.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_palavra_chave.setObjectName("lineEdit_palavra_chave")
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.lineEdit_palavra_chave)
-        self.pushButton = QtWidgets.QPushButton(self.tab)
-        self.pushButton.setMinimumSize(QtCore.QSize(0, 22))
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.pushButton.setStyleSheet("QPushButton:hover{\n"
+        self.pushButton_salvar_add = QtWidgets.QPushButton(self.tab)
+        self.pushButton_salvar_add.setMinimumSize(QtCore.QSize(0, 22))
+        self.pushButton_salvar_add.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton_salvar_add.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.pushButton_salvar_add.setStyleSheet("QPushButton:hover{\n"
 "    background-color: rgb(85, 170, 127);\n"
 "    border-radius: 12px;\n"
 "    color: #000000;\n"
@@ -293,8 +293,8 @@ class Ui_TelaPrincipal(object):
 "    background-color: rgb(255,255,255);\n"
 "\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.pushButton)
+        self.pushButton_salvar_add.setObjectName("pushButton_salvar_add")
+        self.formLayout.setWidget(8, QtWidgets.QFormLayout.FieldRole, self.pushButton_salvar_add)
         self.textEdit_obs_nova_tarefa = QtWidgets.QTextEdit(self.tab)
         self.textEdit_obs_nova_tarefa.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.textEdit_obs_nova_tarefa.setPlaceholderText("")
@@ -401,7 +401,7 @@ class Ui_TelaPrincipal(object):
 
         self.retranslateUi(TelaPrincipal)
         self.toolBox.setCurrentIndex(0)
-        self.Pages.setCurrentIndex(0)
+        self.Pages.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(TelaPrincipal)
 
@@ -441,7 +441,7 @@ class Ui_TelaPrincipal(object):
         self.label_obs.setText(_translate("TelaPrincipal", "Observações:"))
         self.label_palavra_chave.setText(_translate("TelaPrincipal", "Palavra-Chave:"))
         self.lineEdit_palavra_chave.setPlaceholderText(_translate("TelaPrincipal", "Ex: Estudo, Trabalho, Colégio, Faculdade"))
-        self.pushButton.setText(_translate("TelaPrincipal", "SALVAR"))
+        self.pushButton_salvar_add.setText(_translate("TelaPrincipal", "SALVAR"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("TelaPrincipal", "Adicionar Tarefa"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("TelaPrincipal", "Calendário"))
         self.label_2.setText(_translate("TelaPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">SELECIONE APENAS A QUE VOCÊ DESEJA EDITAR</span></p></body></html>"))
@@ -471,6 +471,7 @@ class Ui_TelaPrincipal(object):
         item = self.tableWidget_excluir_tarefa.horizontalHeaderItem(5)
         item.setText(_translate("TelaPrincipal", "Status"))
         self.label_versao_app.setText(_translate("TelaPrincipal", "PyTask 2024.2"))
+        
 
 
 ########################PÁGINAS DO SISTEMA
@@ -479,6 +480,12 @@ class Ui_TelaPrincipal(object):
         self.pushButton_adicionar_tarefa.clicked.connect(lambda:self.Pages.setCurrentWidget(self.page_adicionar))
         self.pushButton_editar_tarefa.clicked.connect(lambda:self.Pages.setCurrentWidget(self.page_editar))
         self.pushButton_excluir_tarefa.clicked.connect(lambda:self.Pages.setCurrentWidget(self.page_excluir))
+        
+##############################################
+
+#CADASTRO DE TAREFA
+    def cadastrar_tarefa(self):
+        self.pushButton_salvar_add.clicked.connect(self.add)
 
 
 
