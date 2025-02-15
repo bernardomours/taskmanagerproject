@@ -674,33 +674,31 @@ class Ui_TelaPrincipal(object):
 
         if ok and novo_valor.strip():
                         
-                item.setText(novo_valor)
-
+                id_tarefa = self.tableWidget_editar_tarefa.item(linha, 0).text()
                 colunas_db = ["id","nome", "data", "prioridade", "observacoes", "status", "palavra_chave"]
                 nome_coluna = colunas_db[coluna]
 
                 if coluna == 0: #Garante que o id não vai poder ser editado
                       QMessageBox.warning(None, "Aviso", "O ID da tarefa não pode ser editado.")
-                      
-                id_tarefa = self.tableWidget_editar_tarefa.item(linha, 0).text()
-                
-
-# função da verificação da data ainda está com bugs
-# o programa valida a data corretamente mas se estiver com a data no formato errado,
-# ele da o erro mas salva a informação mesmo assim.  
-                if coluna == 2:
+                      return
+                elif coluna == 2:
                        if not validar_data(novo_valor):
                                
                                QMessageBox.warning(None, "Erro", "Formato de data inválido! Use YYYY/MM/DD.")
-                               
-                               
+                               return
+                elif coluna == 3:
+                       if novo_valor not in ['1 - Baixa', '2 - Média', '3 - Alta']:
+                              QMessageBox.warning(None, "Erro", "Formato inválido!O formato deve seguir o da ordem: 1 - Baixa, 2 - Média, 3 - Alta")
+                              return
+                if coluna == 5:
+                        if novo_valor not in ['Pendente', 'Concluida']:
+                              QMessageBox.warning(None, "Erro", "Formato inválido! O formato deve seguir o da ordem: Pendente ou Concluida.")
+                              return                                                   
+                      
                 
-                if coluna == 3:
-                       if not novo_valor == '1 - Baixa' or novo_valor == '2 - Média' or novo_valor == '3 - Alta' :
-                              QMessageBox.warning(None, "Erro", "Formato inválido!")
-                              return                                          
 
-                item.setText(novo_valor)
+                # Atualiza o valor na tabela da interface
+                item.setText(novo_valor)        
 
 
 # to fazendo as alterações conectando o banco de dados dessa forma por não ter uma função específica no arquivo database.py e achei mais facil
