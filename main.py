@@ -526,8 +526,11 @@ class Ui_TelaPrincipal(object):
         self.pushButton_excluir_tarefa.clicked.connect(lambda:self.Pages.setCurrentWidget(self.page_excluir))
         
 ##############################################
+###############################################
 
-#atualizar a lista, no momento só do menu principal... acredito eu. ainda não testei
+#funções para as abas home, excluir e editar tarefas e alguns detalhes...
+##############################################
+#atualizar a lista e das outras abas
     def carregar_tarefas(self):
         from database import listar_tarefas
 
@@ -549,7 +552,7 @@ class Ui_TelaPrincipal(object):
                      self.tableWidget_menu_principal.setItem(row, column, item)
                      item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
 
-
+        #tabela de edição 
         self.tableWidget_editar_tarefa.clearContents()
         self.tableWidget_editar_tarefa.setRowCount(len(db))
 
@@ -569,7 +572,7 @@ class Ui_TelaPrincipal(object):
                         item.setFlags(item.flags() & ~Qt.ItemIsEditable)  # Impede edição
                         self.tableWidget_excluir_tarefa.setItem(row, column, item)            
 
-
+# função de adicionar a tarefa
     def adicionar_tarefa(self):
         from database import inserir_tarefa
 
@@ -592,18 +595,18 @@ class Ui_TelaPrincipal(object):
         # Atualiza a tabela principal
         self.carregar_tarefas()
 
-        # Limpa os campos
+        # Limpa os campos das linhas para manter sempre atualizada
         self.lineEdit_nome_evento.clear()
         self.textEdit_obs_nova_tarefa.clear()
         self.lineEdit_palavra_chave.clear()
 
         QtWidgets.QMessageBox.information(None, "Sucesso", "Tarefa adicionada com sucesso!")
 
-
+#  função de excluir tarefa, um por um pela linha
     def excluir_tarefas(self):
         selecionar_row = self.tableWidget_excluir_tarefa.currentRow() #Obtem a linha selecionada
         if selecionar_row == -1: #nenhuma linha selecionada
-                QtWidgets.QMessageBox.warning(self, "Erro"," Selecione uma tarefa para excluir.")
+                QtWidgets.QMessageBox.warning(None, "Erro"," Selecione uma tarefa para excluir.")
                 return
 
         item = self.tableWidget_excluir_tarefa.item(selecionar_row, 0)
@@ -629,33 +632,39 @@ class Ui_TelaPrincipal(object):
 
         self.carregar_tarefas()     
 
-
+# isso para poder fazer as edições das tarefas sem problema 
     def __init__(self):
         # Conectar ao banco de dados SQLite3
         self.conexao = sqlite3.connect("tarefas.db")
         self.cursor = self.conexao.cursor()
-    
+
+# função de editar tarefas, piores dias da minha vida: fazer essa função.. que negócio dificil    
     def editar_tarefa(self):
         # Pega a linha e coluna selecionada
         selecionado_item = self.tableWidget_editar_tarefa.selectedItems()
         
 
         if not selecionado_item:
-                QMessageBox.warning(self, 'Aviso', "Selecione uma célula para editar.")
+                QMessageBox.warning(None, 'Aviso', "Selecione uma célula para editar.")
                 return
 
+# função da verificação da data ainda está com bugs
+# o programa valida a data corretamente mas se estiver com a data no formato errado,
+# ele da o erro mas salva a informação mesmo assim. 
+
         def validar_data(data_str):
-                """Verifica se a data está no formato correto DD/MM/YYYY."""
-                padrao = r"^\d{4}/\d{2}/\d{2}$"
-                if not re.match(padrao, data_str):
-                        return False
+                """Verifica se a data está no formato correto DD-MM-YYYY."""
+                padrao = r"^\d{4}-\d{2}-\d{2}$"
+                if re.match(padrao, data_str):
+                        return True
                 try:
-                        datetime.strptime(data_str, "%Y/%m/%d")
+                        datetime.strptime(data_str, "%Y-%m-%d")
                         return True
                 except ValueError:
-                        return False                 
+                        return
+                          
+                                    
         
-
         item = selecionado_item[0] # Obtém o primeiro item selecionado
         linha = item.row() # Pega a linha da tabela
         coluna = item.column()# Pega a coluna da tabela
@@ -664,25 +673,37 @@ class Ui_TelaPrincipal(object):
         novo_valor, ok = QInputDialog.getText(None, "Editar Tarefa", "Novo valor:", text=valor_atual) #
 
         if ok and novo_valor.strip():
-                
-                
+                        
                 item.setText(novo_valor)
 
                 colunas_db = ["id","nome", "data", "prioridade", "observacoes", "status", "palavra_chave"]
-                
-                if coluna == 0: #Garante que o id não vai poder ser editado
-                      QMessageBox.warning(None, "Aviso", "O ID da tarefa não pode ser editado.")
-                
                 nome_coluna = colunas_db[coluna]
 
+                if coluna == 0: #Garante que o id não vai poder ser editado
+                      QMessageBox.warning(None, "Aviso", "O ID da tarefa não pode ser editado.")
+                      
                 id_tarefa = self.tableWidget_editar_tarefa.item(linha, 0).text()
+                
 
-                # 📌 **Se a edição for na coluna "prazo" (data de vencimento), validar formato**
-                if nome_coluna == "data":
-                        if not validar_data(novo_valor):
-                                QMessageBox.warning(None, "Erro", "Formato de data inválido! Use YYYY/MM/DD.")
-                                
+# função da verificação da data ainda está com bugs
+# o programa valida a data corretamente mas se estiver com a data no formato errado,
+# ele da o erro mas salva a informação mesmo assim.  
+                if coluna == 2:
+                       if not validar_data(novo_valor):
+                               
+                               QMessageBox.warning(None, "Erro", "Formato de data inválido! Use YYYY/MM/DD.")
+                               
+                               
+                
+                if coluna == 3:
+                       if not novo_valor == '1 - Baixa' or novo_valor == '2 - Média' or novo_valor == '3 - Alta' :
+                              QMessageBox.warning(None, "Erro", "Formato inválido!")
+                              return                                          
 
+                item.setText(novo_valor)
+
+
+# to fazendo as alterações conectando o banco de dados dessa forma por não ter uma função específica no arquivo database.py e achei mais facil
                 cursor = self.conexao.cursor()
                 cursor.execute(f"UPDATE tarefas SET {nome_coluna} = ? WHERE id = ?", (novo_valor, id_tarefa) )
                 self.conexao.commit()
