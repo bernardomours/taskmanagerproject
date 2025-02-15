@@ -1,5 +1,11 @@
-
+import sqlite3
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QInputDialog, QMessageBox
+from PyQt5.QtWidgets import QLineEdit
+from datetime import datetime
+import re
 
 
 class Ui_TelaPrincipal(object):
@@ -251,13 +257,13 @@ class Ui_TelaPrincipal(object):
         self.lineEdit_nome_evento.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.lineEdit_nome_evento.setObjectName("lineEdit_nome_evento")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.lineEdit_nome_evento)
-        self.label_prazo = QtWidgets.QLabel(self.tab)
-        self.label_prazo.setObjectName("label_prazo")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_prazo)
-        self.dateEdit_prazo_nova_tarefa = QtWidgets.QDateEdit(self.tab)
-        self.dateEdit_prazo_nova_tarefa.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.dateEdit_prazo_nova_tarefa.setObjectName("dateEdit_prazo_nova_tarefa")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.dateEdit_prazo_nova_tarefa)
+        # self.label_prazo = QtWidgets.QLabel(self.tab)
+        # self.label_prazo.setObjectName("label_prazo")
+        # self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_prazo)
+        # self.dateEdit_prazo_nova_tarefa = QtWidgets.QDateEdit(self.tab)
+        # self.dateEdit_prazo_nova_tarefa.setStyleSheet("background-color: rgb(255, 255, 255);")
+        # self.dateEdit_prazo_nova_tarefa.setObjectName("dateEdit_prazo_nova_tarefa")
+        # self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.dateEdit_prazo_nova_tarefa)
         self.label_prioridade = QtWidgets.QLabel(self.tab)
         self.label_prioridade.setObjectName("label_prioridade")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_prioridade)
@@ -346,6 +352,20 @@ class Ui_TelaPrincipal(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_editar_tarefa.setHorizontalHeaderItem(5, item)
         self.verticalLayout_10.addWidget(self.tableWidget_editar_tarefa)
+        self.pushButton_editar_ta = QtWidgets.QPushButton(self.page_editar)#
+        self.pushButton_editar_ta.setMinimumSize(QtCore.QSize(100, 30))
+        self.pushButton_editar_ta.setStyleSheet("QPushButton:hover{\n"
+"    background-color: rgb(255,255,255);\n"
+"    border-radius:15px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"    color:rgb(0,0,0);\n"
+"    border-radius:15px;\n"
+"    background-color: rgb(255,255,255);\n"
+"}")
+        self.pushButton_editar_ta.setObjectName("pushButton_editar_ta")
+        self.verticalLayout_10.addWidget(self.pushButton_editar_ta, 0, QtCore.Qt.AlignHCenter)#
         self.Pages.addWidget(self.page_editar)
         self.page_excluir = QtWidgets.QWidget()
         self.page_excluir.setObjectName("page_excluir")
@@ -381,7 +401,22 @@ class Ui_TelaPrincipal(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_excluir_tarefa.setHorizontalHeaderItem(5, item)
         self.verticalLayout_9.addWidget(self.tableWidget_excluir_tarefa)
+        self.pushButton_Excluir_Ta = QtWidgets.QPushButton(self.page_excluir)
+        self.pushButton_Excluir_Ta.setMinimumSize(QtCore.QSize(100, 30))
+        self.pushButton_Excluir_Ta.setStyleSheet("QPushButton:hover{\n"
+"    background-color: rgb(255,255,255);\n"
+"    border-radius:15px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"    color:rgb(0,0,0);\n"
+"    border-radius:15px;\n"
+"    background-color: rgb(255,255,255);\n"
+"}")
+        self.pushButton_Excluir_Ta.setObjectName("pushButton_Excluir_Ta")
+        self.verticalLayout_9.addWidget(self.pushButton_Excluir_Ta, 0, QtCore.Qt.AlignHCenter)
         self.Pages.addWidget(self.page_excluir)
+        #
         self.verticalLayout_5.addWidget(self.Pages)
         self.verticalLayout.addWidget(self.main_frame)
         self.footer = QtWidgets.QFrame(self.main_container)
@@ -404,6 +439,9 @@ class Ui_TelaPrincipal(object):
         self.Pages.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(TelaPrincipal)
+        self.carregar_tarefas()
+
+
 
     def retranslateUi(self, TelaPrincipal):
         _translate = QtCore.QCoreApplication.translate
@@ -413,9 +451,9 @@ class Ui_TelaPrincipal(object):
         self.pushButton_adicionar_tarefa.setText(_translate("TelaPrincipal", "Adicionar Tarefa"))
         self.pushButton_editar_tarefa.setText(_translate("TelaPrincipal", "Editar Tarefa"))
         self.pushButton_excluir_tarefa.setText(_translate("TelaPrincipal", "Excluir Tarefa"))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page), _translate("TelaPrincipal", "Page 1"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), _translate("TelaPrincipal", "Página Inicial"))
         self.label_3.setText(_translate("TelaPrincipal", "<html><head/><body><p align=\"center\">DESENVOLVEDORES</p><p align=\"center\">Antônio Lúcio Pereira de Almeida N.</p><p align=\"center\">Bernardo Moura Bandeira Araújo</p><p align=\"center\">João Fernandes</p></body></html>"))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), _translate("TelaPrincipal", "Page 2"))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), _translate("TelaPrincipal", "Desenvolvedores"))
         self.label.setText(_translate("TelaPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">GERENCIADOR DE TAREFAS</span></p></body></html>"))
         self.label_5.setText(_translate("TelaPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">PÁGINA PRINCIPAL</span></p></body></html>"))
         item = self.tableWidget_menu_principal.horizontalHeaderItem(0)
@@ -433,7 +471,7 @@ class Ui_TelaPrincipal(object):
         item = self.tableWidget_menu_principal.horizontalHeaderItem(6)
         item.setText(_translate("TelaPrincipal", "Palavra-Chave"))
         self.label_nome_evento.setText(_translate("TelaPrincipal", "Nome do Evento:"))
-        self.label_prazo.setText(_translate("TelaPrincipal", "Prazo:"))
+        # self.label_prazo.setText(_translate("TelaPrincipal", "Prazo:"))
         self.label_prioridade.setText(_translate("TelaPrincipal", "Prioridade:"))
         self.comboBox_prioridade_nova_tarefa.setItemText(0, _translate("TelaPrincipal", "1 - Baixa"))
         self.comboBox_prioridade_nova_tarefa.setItemText(1, _translate("TelaPrincipal", "2 - Média"))
@@ -457,6 +495,7 @@ class Ui_TelaPrincipal(object):
         item.setText(_translate("TelaPrincipal", "Observações"))
         item = self.tableWidget_editar_tarefa.horizontalHeaderItem(5)
         item.setText(_translate("TelaPrincipal", "Status"))
+        self.pushButton_editar_ta.setText(_translate("TelaPrincipal", "Editar Tarefa"))
         self.label_4.setText(_translate("TelaPrincipal", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">SELECIONE APENAS A QUE VOCÊ DESEJA EXCLUIR</span></p></body></html>"))
         item = self.tableWidget_excluir_tarefa.horizontalHeaderItem(0)
         item.setText(_translate("TelaPrincipal", "ID da Tarefa"))
@@ -470,8 +509,13 @@ class Ui_TelaPrincipal(object):
         item.setText(_translate("TelaPrincipal", "Observações"))
         item = self.tableWidget_excluir_tarefa.horizontalHeaderItem(5)
         item.setText(_translate("TelaPrincipal", "Status"))
+        self.pushButton_Excluir_Ta.setText(_translate("TelaPrincipal", "Excluir Tarefa"))
         self.label_versao_app.setText(_translate("TelaPrincipal", "PyTask 2024.2"))
-        
+
+
+        self.pushButton_salvar_add.clicked.connect(self.adicionar_tarefa)
+        self.pushButton_Excluir_Ta.clicked.connect(self.excluir_tarefas)       
+        self.pushButton_editar_ta.clicked.connect(self.editar_tarefa)
 
 
 ########################PÁGINAS DO SISTEMA
@@ -483,11 +527,169 @@ class Ui_TelaPrincipal(object):
         
 ##############################################
 
-#CADASTRO DE TAREFA
-    def cadastrar_tarefa(self):
-        self.pushButton_salvar_add.clicked.connect(self.add)
+#atualizar a lista, no momento só do menu principal... acredito eu. ainda não testei
+    def carregar_tarefas(self):
+        from database import listar_tarefas
+
+        db = listar_tarefas() #pega as imformações armazenadas do banco(tarefas.db)
+
+        self.tableWidget_menu_principal.clearContents()
+        self.tableWidget_menu_principal.setRowCount(len(db))
 
 
+        
+        self.tableWidget_excluir_tarefa.clearContents()
+        self.tableWidget_excluir_tarefa.setRowCount(len(db))
+        
+        for row, text in enumerate(db):
+                for column, data in enumerate(text):
+                     item = QtWidgets.QTableWidgetItem(str(data))
+        
+                
+                     self.tableWidget_menu_principal.setItem(row, column, item)
+                     item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+
+
+        self.tableWidget_editar_tarefa.clearContents()
+        self.tableWidget_editar_tarefa.setRowCount(len(db))
+
+        for row, text in enumerate(db):
+                for column, data in enumerate(text):
+                        item = QtWidgets.QTableWidgetItem(str(data))
+                        self.tableWidget_editar_tarefa.setItem(row, column, item)  # Permite edição 
+                        item.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable)
+
+        # Preencher a tabela de exclusão
+        self.tableWidget_excluir_tarefa.clearContents()
+        self.tableWidget_excluir_tarefa.setRowCount(len(db))
+
+        for row, text in enumerate(db):
+                for column, data in enumerate(text):
+                        item = QtWidgets.QTableWidgetItem(str(data))
+                        item.setFlags(item.flags() & ~Qt.ItemIsEditable)  # Impede edição
+                        self.tableWidget_excluir_tarefa.setItem(row, column, item)            
+
+
+    def adicionar_tarefa(self):
+        from database import inserir_tarefa
+
+        # Captura os dados dos campos de entrada
+        nome = self.lineEdit_nome_evento.text()
+        data = self.calendarWidget_nova_tarefa.selectedDate().toString("yyyy-MM-dd")
+        prioridade = self.comboBox_prioridade_nova_tarefa.currentText()
+        obs = self.textEdit_obs_nova_tarefa.toPlainText()
+        palavra_chave = self.lineEdit_palavra_chave.text()
+        status = "Pendente"  # Padrão ao adicionar
+
+        # Verifica se o nome do evento está preenchido
+        if not nome:
+                QtWidgets.QMessageBox.warning(None, "Erro", "O nome do evento é obrigatório!")
+                return
+
+        # Adiciona a tarefa no banco de dados
+        inserir_tarefa(nome, data, prioridade, obs, status, palavra_chave)
+
+        # Atualiza a tabela principal
+        self.carregar_tarefas()
+
+        # Limpa os campos
+        self.lineEdit_nome_evento.clear()
+        self.textEdit_obs_nova_tarefa.clear()
+        self.lineEdit_palavra_chave.clear()
+
+        QtWidgets.QMessageBox.information(None, "Sucesso", "Tarefa adicionada com sucesso!")
+
+
+    def excluir_tarefas(self):
+        selecionar_row = self.tableWidget_excluir_tarefa.currentRow() #Obtem a linha selecionada
+        if selecionar_row == -1: #nenhuma linha selecionada
+                QtWidgets.QMessageBox.warning(self, "Erro"," Selecione uma tarefa para excluir.")
+                return
+
+        item = self.tableWidget_excluir_tarefa.item(selecionar_row, 0)
+        if item is None:
+                return
+
+        id_tarefa = item.text()
+
+        resposta = QtWidgets.QMessageBox.question(
+                None, "Confirmar Exclusão", 
+                f"Tem certeza que deseja excluir a tarefa '{id_tarefa}'?",
+                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No
+        )
+
+        if resposta == QtWidgets.QMessageBox.No:
+                return
+
+        from database import excluir_tarefa   
+
+        excluir_tarefa(id_tarefa)
+
+        self.tableWidget_excluir_tarefa.removeRow(selecionar_row)
+
+        self.carregar_tarefas()     
+
+
+    def __init__(self):
+        # Conectar ao banco de dados SQLite3
+        self.conexao = sqlite3.connect("tarefas.db")
+        self.cursor = self.conexao.cursor()
+    
+    def editar_tarefa(self):
+        # Pega a linha e coluna selecionada
+        selecionado_item = self.tableWidget_editar_tarefa.selectedItems()
+        
+
+        if not selecionado_item:
+                QMessageBox.warning(self, 'Aviso', "Selecione uma célula para editar.")
+                return
+
+        def validar_data(data_str):
+                """Verifica se a data está no formato correto DD/MM/YYYY."""
+                padrao = r"^\d{4}/\d{2}/\d{2}$"
+                if not re.match(padrao, data_str):
+                        return False
+                try:
+                        datetime.strptime(data_str, "%Y/%m/%d")
+                        return True
+                except ValueError:
+                        return False                 
+        
+
+        item = selecionado_item[0] # Obtém o primeiro item selecionado
+        linha = item.row() # Pega a linha da tabela
+        coluna = item.column()# Pega a coluna da tabela
+        valor_atual = item.text()        # Obtém o valor atual da célula
+        
+        novo_valor, ok = QInputDialog.getText(None, "Editar Tarefa", "Novo valor:", text=valor_atual) #
+
+        if ok and novo_valor.strip():
+                
+                
+                item.setText(novo_valor)
+
+                colunas_db = ["id","nome", "data", "prioridade", "observacoes", "status", "palavra_chave"]
+                
+                if coluna == 0: #Garante que o id não vai poder ser editado
+                      QMessageBox.warning(None, "Aviso", "O ID da tarefa não pode ser editado.")
+                
+                nome_coluna = colunas_db[coluna]
+
+                id_tarefa = self.tableWidget_editar_tarefa.item(linha, 0).text()
+
+                # 📌 **Se a edição for na coluna "prazo" (data de vencimento), validar formato**
+                if nome_coluna == "data":
+                        if not validar_data(novo_valor):
+                                QMessageBox.warning(None, "Erro", "Formato de data inválido! Use YYYY/MM/DD.")
+                                
+
+                cursor = self.conexao.cursor()
+                cursor.execute(f"UPDATE tarefas SET {nome_coluna} = ? WHERE id = ?", (novo_valor, id_tarefa) )
+                self.conexao.commit()
+
+                self.carregar_tarefas()        
+
+        
 
 if __name__ == "__main__":
     import sys
